@@ -40,37 +40,53 @@ void my_setup() {
   Serial.println("finished setup");
 }
 
-void runLeftMotor(Direction direction) {
-  switch(direction) {
-    case BACKWARDS:
-      leftMotor->run(BACKWARD);
-    case FORWARDS:
-      leftMotor->run(FORWARD);
-    default:
-      ;
-  }
-}
+// void runLeftMotor(Direction direction) {
+//   switch(direction) {
+//     case BACKWARDS:
+//       leftMotor->run(BACKWARD);
+//     case FORWARDS:
+//       leftMotor->run(FORWARD);
+//     default:
+//       ;
+//   }
+// }
+//
+// void runRightMotor(Direction direction) {
+//   switch(direction) {
+//     case BACKWARDS:
+//       rightMotor->run(BACKWARD);
+//     case FORWARDS:
+//       rightMotor->run(FORWARD);
+//     default:
+//       ;
+//   }
+// }
+//
+// void setLeftSpeed(int speed) {
+//   leftMotor->setSpeed(speed);
+// }
+//
+// void setRightSpeed(int speed) {
+//   rightMotor->setSpeed(speed);
+// }
 
-void runRightMotor(Direction direction) {
-  switch(direction) {
-    case BACKWARDS:
-      rightMotor->run(BACKWARD);
-    case FORWARDS:
-      rightMotor->run(FORWARD);
-    default:
-      ;
-  }
-}
+// new DSL starting here
 
-void setLeftSpeed(int speed) {
+void moveForwards(int speed) {
+  Serial.println("moving forwards...");
+  rightMotor->run(FORWARD);
+  leftMotor->run(FORWARD);
+  rightMotor->setSpeed(speed);
   leftMotor->setSpeed(speed);
 }
 
-void setRightSpeed(int speed) {
+void moveBackwards(int speed) {
+  Serial.println("moving backwards...");
+  rightMotor->run(BACKWARD);
+  leftMotor->run(BACKWARD);
   rightMotor->setSpeed(speed);
+  leftMotor->setSpeed(speed);
 }
-
-// new DSL starting here
 
 void rotateClockwise(int speed) {
   Serial.println("moving counterclockwise...");
@@ -88,18 +104,8 @@ void rotateCounterClockwise(int speed) {
   leftMotor->setSpeed(speed);
 }
 
-void goForwards(int speed) {
-  Serial.println("moving forwards...");
-  rightMotor->run(FORWARD);
-  leftMotor->run(FORWARD);
-  rightMotor->setSpeed(speed);
-  leftMotor->setSpeed(speed);
-}
-
-void goBackwards(int speed) {
-  Serial.println("moving backwards...");
-  rightMotor->run(BACKWARD);
-  leftMotor->run(BACKWARD);
+void stop(int speed) {
+  Serial.println("stopping...");
   rightMotor->setSpeed(speed);
   leftMotor->setSpeed(speed);
 }
