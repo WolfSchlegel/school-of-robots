@@ -28,7 +28,7 @@ void my_println(String value) {
 }
 
 void my_setup() {
-  Serial.begin(9600);           // set up Serial library at 9600 bps
+  Serial.begin(9600);
 
   Serial.println("initialising Adafruit Motorshield v2");
   AFMS.begin();  // create with the default frequency 1.6KHz
@@ -40,37 +40,36 @@ void my_setup() {
   Serial.println("finished setup");
 }
 
-// void runLeftMotor(Direction direction) {
-//   switch(direction) {
-//     case BACKWARDS:
-//       leftMotor->run(BACKWARD);
-//     case FORWARDS:
-//       leftMotor->run(FORWARD);
-//     default:
-//       ;
-//   }
-// }
-//
-// void runRightMotor(Direction direction) {
-//   switch(direction) {
-//     case BACKWARDS:
-//       rightMotor->run(BACKWARD);
-//     case FORWARDS:
-//       rightMotor->run(FORWARD);
-//     default:
-//       ;
-//   }
-// }
-//
-// void setLeftSpeed(int speed) {
-//   leftMotor->setSpeed(speed);
-// }
-//
-// void setRightSpeed(int speed) {
-//   rightMotor->setSpeed(speed);
-// }
+// experimental
+void accelerate() {
+  Serial.println("accelerating...");
 
-// new DSL starting here
+  // rightMotor->run(FORWARD);
+  // leftMotor->run(FORWARD);
+  for (int i = SPEED_LOW; i <= SPEED_HIGH; i += SPEED_DELTA){
+    Serial.println("setting speed to " + String(i));
+
+    rightMotor->setSpeed(i);
+    leftMotor->setSpeed(i);
+    delay(SPEED_DELAY);
+   }
+}
+
+// still experimental
+void decelerate() {
+  Serial.println("decelerating...");
+
+  // rightMotor->run(FORWARD);
+  // leftMotor->run(FORWARD);
+
+  for (int i = SPEED_HIGH; i >= SPEED_LOW; i -= SPEED_DELTA){
+    Serial.println("setting speed to " + String(i));
+
+    rightMotor->setSpeed(i);
+    leftMotor->setSpeed(i);
+    delay(SPEED_DELAY);
+   }
+}
 
 void moveForwards(int speed) {
   Serial.println("moving forwards...");
@@ -108,4 +107,8 @@ void stop(int speed) {
   Serial.println("stopping...");
   rightMotor->setSpeed(speed);
   leftMotor->setSpeed(speed);
+}
+
+void stop() {
+  stop(0);
 }

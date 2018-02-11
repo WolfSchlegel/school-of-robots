@@ -23,7 +23,7 @@ String directionToString(Direction direction) {
   }
 }
 
-Direction getDirection2(int rightValue, int leftValue){
+Direction getDirectionFromReadings(int rightValue, int leftValue){
   bool leftOnBlack = leftValue < IR_SENSOR_THRESHOLD;
   bool rightOnBlack = rightValue < IR_SENSOR_THRESHOLD;
 
@@ -51,7 +51,7 @@ Direction getDirection() {
     my_println("left sensor value is " + String(leftValue));
   }
 
-  Direction direction = getDirection2(rightValue, leftValue);
+  Direction direction = getDirectionFromReadings(rightValue, leftValue);
   my_println("direction is " + directionToString(direction));
 
   return direction;
