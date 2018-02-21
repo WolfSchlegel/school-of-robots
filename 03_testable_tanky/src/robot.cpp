@@ -44,8 +44,8 @@ void my_setup() {
 void accelerate() {
   Serial.println("accelerating...");
 
-  // rightMotor->run(FORWARD);
-  // leftMotor->run(FORWARD);
+  rightMotor->run(FORWARD);
+  leftMotor->run(FORWARD);
   for (int i = SPEED_LOW; i <= SPEED_HIGH; i += SPEED_DELTA){
     Serial.println("setting speed to " + String(i));
 
@@ -59,8 +59,8 @@ void accelerate() {
 void decelerate() {
   Serial.println("decelerating...");
 
-  // rightMotor->run(FORWARD);
-  // leftMotor->run(FORWARD);
+  rightMotor->run(FORWARD);
+  leftMotor->run(FORWARD);
 
   for (int i = SPEED_HIGH; i >= SPEED_LOW; i -= SPEED_DELTA){
     Serial.println("setting speed to " + String(i));

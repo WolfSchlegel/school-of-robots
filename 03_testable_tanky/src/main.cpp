@@ -7,7 +7,7 @@
 // conditional include to the rescue ?
 //#include "direction.h"
 
-const int VERSION = 41;
+const int VERSION = 42;
 
 void setup() {
   my_setup();
@@ -37,6 +37,7 @@ void loop() {
     default:
       stop(SPEED_ZERO);
   }
-
-  my_delay(25);
+  // accelerate();
+  // my_delay(2500);
+  // decelerate();
 }
